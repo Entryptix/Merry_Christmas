@@ -34,10 +34,10 @@ body {
 
 /* 🎁 Card */
 .card {
-    width: 85vw;
-    max-width: 380px; /* bigger card */
-    height: 65vh;
-    max-height: 500px; /* bigger card */
+    width: 95vw;  /* nearly full screen on mobile */
+    max-width: 450px;
+    height: 80vh; /* almost full screen on mobile */
+    max-height: 600px;
     perspective: 1200px;
     cursor: pointer;
     display: flex;
@@ -74,7 +74,7 @@ body {
 
 .front {
     background: linear-gradient(135deg, #b11226, #7a0d1c);
-    font-size: 6vw;
+    font-size: 9vw; /* bigger for immersive mobile */
     font-weight: bold;
 }
 
@@ -85,8 +85,8 @@ body {
 
 /* 🎄 Tree */
 .tree {
-    width: 65%;
-    max-width: 220px; /* slightly bigger tree */
+    width: 80%; /* larger tree */
+    max-width: 280px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -120,11 +120,11 @@ body {
 
 .message h2 {
     margin: 1vh 0;
-    font-size: 4.5vw;
+    font-size: 7vw; /* larger for mobile */
 }
 
 .message p {
-    font-size: 3.5vw;
+    font-size: 5vw; /* larger for mobile */
     opacity: 0.9;
     line-height: 1.4;
 }
@@ -132,21 +132,21 @@ body {
 /* 📱 Responsive tweaks */
 @media (min-width: 600px) {
     .card {
-        width: 320px;
-        height: 440px;
+        width: 350px;
+        height: 480px;
     }
-    .front { font-size: 28px; }
-    .message h2 { font-size: 22px; }
-    .message p { font-size: 16px; }
+    .front { font-size: 30px; }
+    .message h2 { font-size: 24px; }
+    .message p { font-size: 17px; }
 }
 
 @media (min-width: 900px) {
     .card {
-        width: 380px;
-        height: 500px;
+        width: 400px;
+        height: 550px;
     }
-    .front { font-size: 32px; }
-    .message h2 { font-size: 26px; }
+    .front { font-size: 34px; }
+    .message h2 { font-size: 28px; }
     .message p { font-size: 18px; }
 }
 </style>
@@ -165,7 +165,7 @@ for (let i = 0; i < 50; i++) {
     s.className = "snowflake";
     s.textContent = "❄";
     s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = 2 + Math.random() * 3 + "vh";
+    s.style.fontSize = 3 + Math.random() * 4 + "vh"; /* larger snowflakes for mobile */
     s.style.opacity = Math.random();
     s.style.animationDuration = 5 + Math.random() * 6 + "s";
     document.body.appendChild(s);
