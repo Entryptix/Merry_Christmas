@@ -23,8 +23,9 @@ body {
     position: fixed;
     top: -20px;
     color: white;
-    pointer-events: none;
+    pointer-events: none; /* allows clicking card */
     animation: fall linear infinite;
+    z-index: 10; /* in front of the card */
 }
 
 @keyframes fall {
@@ -34,15 +35,16 @@ body {
 
 /* 🎁 Card */
 .card {
-    width: 95vw;  /* nearly full screen on mobile */
+    width: 95vw;
     max-width: 450px;
-    height: 80vh; /* almost full screen on mobile */
+    height: 80vh;
     max-height: 600px;
     perspective: 1200px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 5; /* behind snowflakes visually */
 }
 
 .inner {
@@ -74,7 +76,7 @@ body {
 
 .front {
     background: linear-gradient(135deg, #b11226, #7a0d1c);
-    font-size: 9vw; /* bigger for immersive mobile */
+    font-size: 9vw;
     font-weight: bold;
 }
 
@@ -85,7 +87,7 @@ body {
 
 /* 🎄 Tree */
 .tree {
-    width: 80%; /* larger tree */
+    width: 80%;
     max-width: 280px;
     height: auto;
     margin-bottom: 10px;
@@ -113,23 +115,22 @@ body {
     to { stroke-dashoffset: -60; }
 }
 
-/* Light colors */
 .light1 { stroke: red; }
 .light2 { stroke: yellow; animation-delay: .3s; }
 .light3 { stroke: cyan; animation-delay: .6s; }
 
 .message h2 {
     margin: 1vh 0;
-    font-size: 7vw; /* larger for mobile */
+    font-size: 7vw;
 }
 
 .message p {
-    font-size: 5vw; /* larger for mobile */
+    font-size: 5vw;
     opacity: 0.9;
     line-height: 1.4;
 }
 
-/* 📱 Responsive tweaks */
+/* Responsive tweaks */
 @media (min-width: 600px) {
     .card {
         width: 350px;
@@ -165,7 +166,7 @@ for (let i = 0; i < 50; i++) {
     s.className = "snowflake";
     s.textContent = "❄";
     s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = 3 + Math.random() * 4 + "vh"; /* larger snowflakes for mobile */
+    s.style.fontSize = 3 + Math.random() * 4 + "vh";
     s.style.opacity = Math.random();
     s.style.animationDuration = 5 + Math.random() * 6 + "s";
     document.body.appendChild(s);
@@ -180,31 +181,17 @@ for (let i = 0; i < 50; i++) {
         </div>
 
         <div class="back">
-
-            <!-- 🎄 SVG Tree with moving lights -->
+            <!-- 🎄 SVG Tree -->
             <svg class="tree" viewBox="0 0 200 260">
-                <!-- Star -->
                 <polygon class="star"
                     points="100,10 110,35 140,35 115,50 125,80 100,60 75,80 85,50 60,35 90,35"
                     fill="gold"/>
-
-                <!-- Tree -->
                 <polygon points="100,40 30,120 170,120" fill="#1e8449"/>
                 <polygon points="100,80 25,160 175,160" fill="#27ae60"/>
                 <polygon points="100,120 20,210 180,210" fill="#2ecc71"/>
-
-                <!-- 🎄 Moving light strings -->
-                <path class="lights light1"
-                    d="M40 110 Q100 130 160 110"
-                    fill="none" stroke-width="3"/>
-                <path class="lights light2"
-                    d="M35 150 Q100 170 165 150"
-                    fill="none" stroke-width="3"/>
-                <path class="lights light3"
-                    d="M30 185 Q100 200 170 185"
-                    fill="none" stroke-width="3"/>
-
-                <!-- Trunk -->
+                <path class="lights light1" d="M40 110 Q100 130 160 110" fill="none" stroke-width="3"/>
+                <path class="lights light2" d="M35 150 Q100 170 165 150" fill="none" stroke-width="3"/>
+                <path class="lights light3" d="M30 185 Q100 200 170 185" fill="none" stroke-width="3"/>
                 <rect x="85" y="210" width="30" height="35" fill="#6d4c41"/>
             </svg>
 
