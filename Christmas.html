@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Christmas Greeting Card</title>
 
 <style>
@@ -33,17 +34,21 @@ body {
 
 /* 🎁 Card */
 .card {
-    width: 340px;
-    height: 460px;
+    width: 85vw;
+    max-width: 380px; /* bigger card */
+    height: 65vh;
+    max-height: 500px; /* bigger card */
     perspective: 1200px;
     cursor: pointer;
-    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .inner {
     width: 100%;
     height: 100%;
-    transition: transform 1s;
+    transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
     transform-style: preserve-3d;
     position: relative;
 }
@@ -62,14 +67,14 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    padding: 2%;
+    box-shadow: 0 2vh 4vh rgba(0,0,0,0.5);
     flex-direction: column;
 }
 
 .front {
     background: linear-gradient(135deg, #b11226, #7a0d1c);
-    font-size: 26px;
+    font-size: 6vw;
     font-weight: bold;
 }
 
@@ -80,8 +85,9 @@ body {
 
 /* 🎄 Tree */
 .tree {
-    width: 200px;
-    position: relative;
+    width: 65%;
+    max-width: 220px; /* slightly bigger tree */
+    height: auto;
     margin-bottom: 10px;
 }
 
@@ -113,12 +119,35 @@ body {
 .light3 { stroke: cyan; animation-delay: .6s; }
 
 .message h2 {
-    margin: 10px 0;
+    margin: 1vh 0;
+    font-size: 4.5vw;
 }
 
 .message p {
-    font-size: 15px;
+    font-size: 3.5vw;
     opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* 📱 Responsive tweaks */
+@media (min-width: 600px) {
+    .card {
+        width: 320px;
+        height: 440px;
+    }
+    .front { font-size: 28px; }
+    .message h2 { font-size: 22px; }
+    .message p { font-size: 16px; }
+}
+
+@media (min-width: 900px) {
+    .card {
+        width: 380px;
+        height: 500px;
+    }
+    .front { font-size: 32px; }
+    .message h2 { font-size: 26px; }
+    .message p { font-size: 18px; }
 }
 </style>
 </head>
@@ -136,7 +165,7 @@ for (let i = 0; i < 50; i++) {
     s.className = "snowflake";
     s.textContent = "❄";
     s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = 10 + Math.random() * 18 + "px";
+    s.style.fontSize = 2 + Math.random() * 3 + "vh";
     s.style.opacity = Math.random();
     s.style.animationDuration = 5 + Math.random() * 6 + "s";
     document.body.appendChild(s);
