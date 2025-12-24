@@ -23,9 +23,9 @@ body {
     position: fixed;
     top: -20px;
     color: white;
-    pointer-events: none;
+    pointer-events: none; /* allows clicking card */
     animation: fall linear infinite;
-    z-index: 10; /* appear over card */
+    z-index: 10; /* in front of the card */
 }
 
 @keyframes fall {
@@ -35,7 +35,7 @@ body {
 
 /* 🎁 Card */
 .card {
-    width: 95vw;  /* almost full screen on phones */
+    width: 95vw;
     max-width: 450px;
     height: 80vh;
     max-height: 600px;
@@ -44,7 +44,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 5;
+    z-index: 5; /* behind snowflakes visually */
 }
 
 .inner {
@@ -161,14 +161,14 @@ body {
 
 <!-- ❄ Snow -->
 <script>
-for (let i = 0; i < 70; i++) {  // more snowflakes for mobile
+for (let i = 0; i < 50; i++) {
     const s = document.createElement("div");
     s.className = "snowflake";
     s.textContent = "❄";
     s.style.left = Math.random() * 100 + "vw";
     s.style.fontSize = 3 + Math.random() * 4 + "vh";
     s.style.opacity = Math.random();
-    s.style.animationDuration = 6 + Math.random() * 6 + "s";
+    s.style.animationDuration = 5 + Math.random() * 6 + "s";
     document.body.appendChild(s);
 }
 </script>
