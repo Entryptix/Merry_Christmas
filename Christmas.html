@@ -23,28 +23,36 @@ body {
     position: fixed;
     top: -20px;
     color: white;
-    pointer-events: none; /* allows clicking card */
+    pointer-events: none;
+    z-index: 10; /* in front of card */
     animation: fall linear infinite;
-    z-index: 10; /* in front of the card */
 }
 
+/* Falling animation with horizontal drift and rotation */
 @keyframes fall {
-    from { transform: translateY(-20px); }
-    to { transform: translateY(110vh); }
+    0% {
+        transform: translateX(0px) translateY(-20px) rotate(0deg);
+    }
+    50% {
+        transform: translateX(20px) translateY(50vh) rotate(180deg);
+    }
+    100% {
+        transform: translateX(-20px) translateY(110vh) rotate(360deg);
+    }
 }
 
 /* 🎁 Card */
 .card {
-    width: 95vw;
-    max-width: 450px;
-    height: 80vh;
-    max-height: 600px;
+    width: 85vw;
+    max-width: 400px;
+    height: 70vh;
+    max-height: 550px;
     perspective: 1200px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 5; /* behind snowflakes visually */
+    z-index: 5;
 }
 
 .inner {
@@ -76,7 +84,7 @@ body {
 
 .front {
     background: linear-gradient(135deg, #b11226, #7a0d1c);
-    font-size: 9vw;
+    font-size: 8vw;
     font-weight: bold;
 }
 
@@ -87,8 +95,8 @@ body {
 
 /* 🎄 Tree */
 .tree {
-    width: 80%;
-    max-width: 280px;
+    width: 75%;
+    max-width: 250px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -121,11 +129,11 @@ body {
 
 .message h2 {
     margin: 1vh 0;
-    font-size: 7vw;
+    font-size: 6.5vw;
 }
 
 .message p {
-    font-size: 5vw;
+    font-size: 4.5vw;
     opacity: 0.9;
     line-height: 1.4;
 }
@@ -161,14 +169,24 @@ body {
 
 <!-- ❄ Snow -->
 <script>
-for (let i = 0; i < 50; i++) {
+const snowflakeCount = window.innerWidth < 600 ? 70 : 50; // more flakes on phones
+for (let i = 0; i < snowflakeCount; i++) {
     const s = document.createElement("div");
     s.className = "snowflake";
     s.textContent = "❄";
     s.style.left = Math.random() * 100 + "vw";
-    s.style.fontSize = 3 + Math.random() * 4 + "vh";
-    s.style.opacity = Math.random();
-    s.style.animationDuration = 5 + Math.random() * 6 + "s";
+    
+    const size = window.innerWidth < 600 ? 2 + Math.random() * 3 : 3 + Math.random() * 4;
+    s.style.fontSize = size + "vh";
+    
+    s.style.opacity = 0.5 + Math.random() * 0.5;
+    
+    const duration = 6 + Math.random() * 6;
+    s.style.animationDuration = duration + "s";
+    
+    // random delay so snowflakes start at different times
+    s.style.animationDelay = Math.random() * 6 + "s";
+    
     document.body.appendChild(s);
 }
 </script>
